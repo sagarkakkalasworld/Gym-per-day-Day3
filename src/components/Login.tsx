@@ -3,6 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { Dumbbell, AlertCircle } from "lucide-react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -16,16 +18,36 @@ export default function Login() {
     e.preventDefault();
     setError("");
     setLoading(true);
-
+  
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate("/landingpage");
+      // 🔐 Firebase Auth login
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+  
+      const uid = userCredential.user.uid;
+  
+      // 🔍 Fetch user role from Firestore
+      const userSnap = await getDoc(doc(db, "users", uid));
+  
+      if (!userSnap.exists()) {
+        throw new Error("User data not found");
+      }
+  
+      const role = userSnap.data().role;
+  
+      // 🚦 Role-based navigation
+      if (role === "owner") {
+        navigate("/owner");
+      } else {
+        navigate("/user");
+      }
+  
     } catch (err: any) {
       setError(err.message || "Invalid email or password");
     } finally {
       setLoading(false);
     }
   };
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center px-4">
