@@ -18,7 +18,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/owner" element={<OwnerDashboard />} />
         <Route path="/my-gyms" element={<MyGyms />} />
-        <Route path="/user" element={<UserDashboard />} />
+        <Route path="/user-dashboard" element={<UserDashboard />} />
       </Routes>
     </BrowserRouter>
   );
