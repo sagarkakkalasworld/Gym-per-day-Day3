@@ -38,7 +38,7 @@ export default function Login() {
       if (role === "owner") {
         navigate("/owner");
       } else {
-        navigate("/user-dashboard");
+        navigate("/user");
       }
   
     } catch (err: any) {
