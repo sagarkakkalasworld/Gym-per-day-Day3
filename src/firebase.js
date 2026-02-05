@@ -4,13 +4,14 @@ import { getFirestore } from "firebase/firestore";
 
 //get firebase credentials from Firebase App/Video
 const firebaseConfig = {
-  apiKey: "AIzaSyC6XXftfp0bi91bcJ7v_jWUW1J0MCkgqe0",
-  authDomain: "gym-per-day.firebaseapp.com",
-  projectId: "gym-per-day",
-  storageBucket: "gym-per-day.firebasestorage.app",
-  messagingSenderId: "673984150298",
-  appId: "1:673984150298:web:fa6801c8a9e08f241acaa3"
-};
+    apiKey: "YOUR_FIREBASE_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID",
+    measurementId: "YOUR_MEASUREMENT_ID"
+  };
   
 
 const app = initializeApp(firebaseConfig);
